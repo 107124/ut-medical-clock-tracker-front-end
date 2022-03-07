@@ -85,9 +85,9 @@ form {
   font-weight: 600;
 }
 
-.clock-in:hover, .clock-out:hover {
+/* .clock-in:hover, .clock-out:hover {
   background-color: tomato;
-}
+} */
 
 .buttons {
   display: flex;

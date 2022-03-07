@@ -30,13 +30,13 @@ export default class StampPage extends Component {
         console.log(data)
     }
 
-    async componentWillUnmount() {
-        const url = "https://ut-medical-clockin-api.herokuapp.com/stamps";
-        const response = await fetch(url);
-        const data = await response.json()
-        this.updateState(data);
-        console.log(data)
-    }
+    // async componentWillUnmount() {
+    //     const url = "https://ut-medical-clockin-api.herokuapp.com/stamps";
+    //     const response = await fetch(url);
+    //     const data = await response.json()
+    //     this.updateState(data);
+    //     console.log(data)
+    // }
 
     handleClockIn = (event) => {
         event.preventDefault();
@@ -48,7 +48,7 @@ export default class StampPage extends Component {
         const date = splitted[0].replace(",", "")
         const time = splitted[1].concat(` ${splitted[2]}`)
 
-        console.log(date, time)
+        // console.log(date, time)
         fetch('https://ut-medical-clockin-api.herokuapp.com/stamp', {
             method: "POST",
             headers: { "content-type": "application/json" },
@@ -57,9 +57,12 @@ export default class StampPage extends Component {
                 time: time
             })
 
-        }).then(res => {
-            console.log("New stamp attempted: ", res)
-        })
+        }).then(
+            this.setState({
+                date: `Clocked In: ${date}`,
+                time: time
+            })
+        )
         window.location.reload(false)
     }
 
@@ -73,7 +76,7 @@ export default class StampPage extends Component {
         const date = splitted[0].replace(",", "")
         const time = splitted[1].concat(` ${splitted[2]}`)
 
-        console.log(date, time)
+        // console.log(date, time)
         fetch('https://ut-medical-clockin-api.herokuapp.com/stamp', {
             method: "POST",
             headers: { "content-type": "application/json" },
@@ -82,9 +85,12 @@ export default class StampPage extends Component {
                 time: time
             })
 
-        }).then(res => {
-            console.log("New stamp attempted: ", res)
-        })
+        }).then(
+            this.setState({
+                date: `Clocked In: ${date}`,
+                time: time
+            })
+        )
         window.location.reload(false)
     }
 
