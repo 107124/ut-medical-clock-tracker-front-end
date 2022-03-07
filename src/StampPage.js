@@ -1,39 +1,65 @@
-// import { render } from "@testing-library/react";
-import * as React from "react";
-import StampItem from "./StampItem"
+// import * as React from "react";
+import { Component } from "react"
+import React from 'react';
 
+export default class StampPage extends Component {
 
-const StampPage = () => {
+    state = {
+        stamps: [],
+        date: "",
+        time: "",
+        isLoading: true
+    };
 
-  let [stamps, setStamps] = React.useState([]);
+    updateState = (data) => {
+        this.setState({
+            stamps: data,
+            date: data[0]["date"],
+            time: data[0]["time"],
+            isLoading: false
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      let response = await fetch("http://127.0.0.1:5000/stamps").then(
-        response => response.json()
-      ).catch(error => {
-        console.log("An error accured dude", error)
-      })
-      stamps = setStamps(response.results)
-      console.log(response.results)
+        })
+        console.log("Should be updated")
     }
-    fetchData();
-  }, []);
 
-  const renderStamps = () => {
-    return stamps?.map(stamp => {
-      return <StampItem stamp={stamp} />
-    })
-  }
+    async componentDidMount() {
+        const url = "http://127.0.0.1:5000/stamps";
+        const response = await fetch(url);
+        const data = await response.json()
+        this.updateState(data);
+        console.log(data)
+    }
 
-  return (
-    <div className="stamps">
-      <p>hello</p>
-      <p>{renderStamps()}</p>
+    // content = this.state.isLoading ? "Loading..." :
+    //     this.state.stamps.map(stamp => {
+    //         return (
+    //             <div>
+    //                 <div>{stamp.date}</div>
+    //                 <div>{stamp.time}</div>
+    //             </div>
+    //         )
+    //     })
 
-    </div>
-  )
+
+    render() {
+        return (
+            <div className="page-CredentialsContainer">
+                <div className="test">
+                    {this.state.isLoading ? "Loading..." : null}
+                    {this.state.stamps.map(stamp => {
+                        return (
+                            <div>
+                                <div>{stamp.date}</div>
+                                <div>{stamp.time}</div>
+                            </div>
+                        )
+                    })}
+                    {/* {this.content} */}
+
+                </div>
+            </div>
+        )
+    }
+
 
 }
-
-export default StampPage;
