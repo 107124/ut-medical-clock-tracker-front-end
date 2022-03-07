@@ -23,8 +23,9 @@ code {
   background: -moz-linear-gradient(top, #6781BF 0%, #D35D95 50%, #F06546 100%);
   background: -webkit-linear-gradient(top, #6781BF 0%, #D35D95 50%,#F06546 100% );
   background: linear-gradient(to bottom, #6781BF 0%, #D35D95 50%,#F06546 100% );
+  background-image: linear-gradient(to bottom, #6781BF 0%, #D35D95 50%,#F06546 100% );
   -webkit-background-clip: text;
-  color: transparent;
+  color: black;
 }
 
 .home-page {
