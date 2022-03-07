@@ -19,7 +19,7 @@ export default class StampPage extends Component {
             isLoading: false
 
         })
-        console.log("Should be updated")
+        console.log(data[0])
     }
 
     async componentDidMount() {
@@ -30,32 +30,87 @@ export default class StampPage extends Component {
         console.log(data)
     }
 
-    // content = this.state.isLoading ? "Loading..." :
-    //     this.state.stamps.map(stamp => {
-    //         return (
-    //             <div>
-    //                 <div>{stamp.date}</div>
-    //                 <div>{stamp.time}</div>
-    //             </div>
-    //         )
-    //     })
+    handleClockIn = (event) => {
+        // event.preventDefault();
+        let timeStamp = Date.now()
+        let convertTime = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timeStamp);
+        // let object = JSON.parse(convertTime.split())
+        const listIt = convertTime.split()
+        const splitted = listIt[0].split(" ")
+        const date = splitted[0].replace(",", "")
+        const time = splitted[1].concat(` ${splitted[2]}`)
+
+        console.log(date, time)
+        fetch('http://127.0.0.1:5000/stamp', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+                date: `Clocked In: ${date}`,
+                time: time
+            })
+
+        }).then(res => {
+            console.log("New stamp attempted: ", res)
+        })
+    }
+
+    handleClockOut = (event) => {
+        // event.preventDefault();
+        let timeStamp = Date.now()
+        let convertTime = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timeStamp);
+        // let object = JSON.parse(convertTime.split())
+        const listIt = convertTime.split()
+        const splitted = listIt[0].split(" ")
+        const date = splitted[0].replace(",", "")
+        const time = splitted[1].concat(` ${splitted[2]}`)
+
+        console.log(date, time)
+        fetch('http://127.0.0.1:5000/stamp', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+                date: `Clocked Out: ${date}`,
+                time: time
+            })
+
+        }).then(res => {
+            console.log("New stamp attempted: ", res)
+        })
+    }
+
+    // handleDelete = id => {
+    //     fetch(`http://127.0.0.1:5000/stamp/${id}`, {
+    //         method: "DELETE"
+    //     }).then(
+    //         console.log("Item was deleted")
+    //     )
+    // }
 
 
     render() {
         return (
-            <div className="page-CredentialsContainer">
-                <div className="test">
-                    {this.state.isLoading ? "Loading..." : null}
-                    {this.state.stamps.map(stamp => {
-                        return (
-                            <div>
-                                <div>{stamp.date}</div>
-                                <div>{stamp.time}</div>
-                            </div>
-                        )
-                    })}
-                    {/* {this.content} */}
-
+            <div className="page-container">
+                <div className="stamps">
+                    <form>
+                        {this.state.isLoading ? "Loading..." : null}
+                        {this.state.stamps.map(stamp => {
+                            return (
+                                <div className="stamp-container">
+                                    <div className="date">
+                                        {/* {stamp.id} */}
+                                        {/* <span><button onClick={this.handleDelete}>X</button></span> */}
+                                        <span>{stamp.date}</span>
+                                    </div>
+                                    <div className="time">
+                                        <span>{stamp.time}</span>
+                                    </div>
+                                    {/* <div>{this.state.time}</div> */}
+                                </div>
+                            )
+                        })}
+                        <button className="clock-in" onClick={this.handleClockIn}>Clock In</button>
+                        <button className="clock-out" onClick={this.handleClockOut}>Clock Out</button>
+                    </form>
                 </div>
             </div>
         )
