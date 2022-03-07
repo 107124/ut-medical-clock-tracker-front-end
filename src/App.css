@@ -55,14 +55,28 @@
   border: none;
   border-radius: 12px;
   margin: 20px;
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+  color: white;
+  font-weight: 600;
+}
+
+.clock-in:hover, .clock-out:hover {
+  background-color: tomato;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .clock-in {
-  background-color: rgb(185, 247, 220);
+  background-color: rgb(31, 230, 144);
 }
 
 .clock-out {
-  background-color: rgb(230, 173, 173);
+  background-color: rgb(228, 143, 143);
 }
 
 .date, .time {

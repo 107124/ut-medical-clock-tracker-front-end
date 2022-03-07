@@ -108,8 +108,10 @@ export default class StampPage extends Component {
                                 </div>
                             )
                         })}
-                        <button className="clock-in" onClick={this.handleClockIn}>Clock In</button>
-                        <button className="clock-out" onClick={this.handleClockOut}>Clock Out</button>
+                        <div className="buttons">
+                            <button className="clock-in" onClick={this.handleClockIn}>Clock In</button>
+                            <button className="clock-out" onClick={this.handleClockOut}>Clock Out</button>
+                        </div>
                     </form>
                 </div>
             </div>
