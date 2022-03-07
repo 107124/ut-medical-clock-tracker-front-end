@@ -90,19 +90,23 @@ export default class StampPage extends Component {
     render() {
         return (
             <div className="page-container">
+                <div className="columns">
+                    <h3>Date</h3>
+                    <h3>Time</h3>
+                </div>
                 <div className="stamps">
                     <form>
                         {this.state.isLoading ? "Loading..." : null}
                         {this.state.stamps.map(stamp => {
                             return (
                                 <div className="stamp-container">
-                                    <div className="date">
+                                    <div className="date-container">
                                         {/* {stamp.id} */}
                                         {/* <span><button onClick={this.handleDelete}>X</button></span> */}
-                                        <span>{stamp.date}</span>
+                                        <div>{stamp.date}</div>
                                     </div>
-                                    <div className="time">
-                                        <span>{stamp.time}</span>
+                                    <div className="time-container">
+                                        <div>{stamp.time}</div>
                                     </div>
                                     {/* <div>{this.state.time}</div> */}
                                 </div>
