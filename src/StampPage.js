@@ -30,8 +30,16 @@ export default class StampPage extends Component {
         console.log(data)
     }
 
+    async componentWillUnmount() {
+        const url = "https://ut-medical-clockin-api.herokuapp.com/stamps";
+        const response = await fetch(url);
+        const data = await response.json()
+        this.updateState(data);
+        console.log(data)
+    }
+
     handleClockIn = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
         let timeStamp = Date.now()
         let convertTime = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timeStamp);
         // let object = JSON.parse(convertTime.split())
@@ -52,10 +60,11 @@ export default class StampPage extends Component {
         }).then(res => {
             console.log("New stamp attempted: ", res)
         })
+        window.location.reload(false)
     }
 
     handleClockOut = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
         let timeStamp = Date.now()
         let convertTime = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timeStamp);
         // let object = JSON.parse(convertTime.split())
@@ -76,6 +85,7 @@ export default class StampPage extends Component {
         }).then(res => {
             console.log("New stamp attempted: ", res)
         })
+        window.location.reload(false)
     }
 
     // handleDelete = id => {
