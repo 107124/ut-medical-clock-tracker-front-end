@@ -119,20 +119,20 @@ export default class StampPage extends Component {
                                     <div className="date-container">
                                         {/* {stamp.id} */}
                                         {/* <span><button onClick={this.handleDelete}>X</button></span> */}
-                                        <div>{stamp.date}</div>
+                                        <div key={stamp.date}>{stamp.date}</div>
                                     </div>
                                     <div className="time-container">
-                                        <div>{stamp.time}</div>
+                                        <div key={stamp.time}>{stamp.time}</div>
                                     </div>
                                     {/* <div>{this.state.time}</div> */}
                                 </div>
                             )
                         })}
                         <div className="buttons">
-                            <button className="clock-in" onClick={this.handleClockIn}>Clock In</button>
-                            <button className="clock-out" onClick={this.handleClockOut}>Clock Out</button>
                         </div>
                     </form>
+                            <button type="submit" className="clock-in" onp onKeyPress={this.handleClockIn} onClick={this.handleClockIn}>Clock In</button>
+                            <button type="submit" className="clock-out" onKeyPress={this.handleClockOut} onClick={this.handleClockOut}>Clock Out</button>
                 </div>
             </div>
         )
