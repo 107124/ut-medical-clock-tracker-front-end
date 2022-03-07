@@ -23,7 +23,7 @@ export default class StampPage extends Component {
     }
 
     async componentDidMount() {
-        const url = "http://127.0.0.1:5000/stamps";
+        const url = "https://ut-medical-clockin-api.herokuapp.com/stamps";
         const response = await fetch(url);
         const data = await response.json()
         this.updateState(data);
@@ -41,7 +41,7 @@ export default class StampPage extends Component {
         const time = splitted[1].concat(` ${splitted[2]}`)
 
         console.log(date, time)
-        fetch('http://127.0.0.1:5000/stamp', {
+        fetch('https://ut-medical-clockin-api.herokuapp.com/stamp', {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({
@@ -65,7 +65,7 @@ export default class StampPage extends Component {
         const time = splitted[1].concat(` ${splitted[2]}`)
 
         console.log(date, time)
-        fetch('http://127.0.0.1:5000/stamp', {
+        fetch('https://ut-medical-clockin-api.herokuapp.com/stamp', {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({
