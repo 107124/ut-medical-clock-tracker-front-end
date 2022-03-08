@@ -30,12 +30,9 @@ export default class StampPage extends Component {
         console.log(data)
     }
 
-    // async componentWillUnmount() {
-    //     const url = "https://ut-medical-clockin-api.herokuapp.com/stamps";
-    //     const response = await fetch(url);
-    //     const data = await response.json()
-    //     this.updateState(data);
-    //     console.log(data)
+    // handleRefresh = () => {
+    //     window.location.reload(false)
+    // // this isn't really updating the page.
     // }
 
     handleClockIn = (event) => {
@@ -47,7 +44,8 @@ export default class StampPage extends Component {
         const splitted = listIt[0].split(" ")
         const date = splitted[0].replace(",", "")
         const time = splitted[1].concat(` ${splitted[2]}`)
-
+        alert(`You have been clocked in at ${date} ${time}`)
+        // this.handleRefresh()
         // console.log(date, time)
         fetch('https://ut-medical-clockin-api.herokuapp.com/stamp', {
             method: "POST",
@@ -63,7 +61,7 @@ export default class StampPage extends Component {
                 time: time
             })
         )
-        window.location.reload(false)
+        // window.location.reload(false)
     }
 
     handleClockOut = (event) => {
@@ -91,7 +89,7 @@ export default class StampPage extends Component {
                 time: time
             })
         )
-        window.location.reload(false)
+        // window.location.reload(false)
     }
 
     // handleDelete = id => {
@@ -131,8 +129,8 @@ export default class StampPage extends Component {
                         <div className="buttons">
                         </div>
                     </form>
-                            <button type="submit" className="clock-in" onp onKeyPress={this.handleClockIn} onClick={this.handleClockIn}>Clock In</button>
-                            <button type="submit" className="clock-out" onKeyPress={this.handleClockOut} onClick={this.handleClockOut}>Clock Out</button>
+                            <button type="submit" className="clock-in" onClick={this.handleClockIn}>Clock In</button>
+                            <button type="submit" className="clock-out" onClick={this.handleClockOut}>Clock Out</button>
                 </div>
             </div>
         )
