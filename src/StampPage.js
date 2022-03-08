@@ -74,6 +74,7 @@ export default class StampPage extends Component {
         const date = splitted[0].replace(",", "")
         const time = splitted[1].concat(` ${splitted[2]}`)
 
+        alert(`You have been clocked out at ${date} ${time}`)
         // console.log(date, time)
         fetch('https://ut-medical-clockin-api.herokuapp.com/stamp', {
             method: "POST",
@@ -129,8 +130,8 @@ export default class StampPage extends Component {
                         <div className="buttons">
                         </div>
                     </form>
-                            <button type="submit" className="clock-in" onClick={this.handleClockIn}>Clock In</button>
-                            <button type="submit" className="clock-out" onClick={this.handleClockOut}>Clock Out</button>
+                    <button type="submit" className="clock-in" onClick={this.handleClockIn}>Clock In</button>
+                    <button type="submit" className="clock-out" onClick={this.handleClockOut}>Clock Out</button>
                 </div>
             </div>
         )
