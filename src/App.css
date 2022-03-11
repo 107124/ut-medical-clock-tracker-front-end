@@ -119,6 +119,15 @@ form {
   text-align: center;
 }
 
-h3 {
+.inStyle {
+  color: green;
+}
+
+.outStyle {
+  color: red;
+}
+
+h3, h4 {
   color: rgb(233, 70, 133);
 }
+
