@@ -76,6 +76,11 @@ export default class StampPage extends Component {
         return `${month}/${day}/${year}`;
     }
 
+    calculateHours = () => {
+        // var hours = Math.abs(date1 - date2) / 36e5;
+        var hours = []
+    }
+
 
     handleClockIn = (event) => {
         // if (this.state.clocked_in === false) {
